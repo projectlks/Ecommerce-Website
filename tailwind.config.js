@@ -8,9 +8,12 @@ export default {
         primary: "#83C5BE",
         accent: "#006D77",
         light_accent: "#FFDDD2",
-        secondary_accent: "#E29578" 
+        secondary_accent: "#E29578"
+      },
+      screens: {
+        "custom-600": "600px"
       }
     }
   },
   plugins: []
-};cd
+};
