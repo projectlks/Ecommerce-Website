@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useFetch from "./hooks/useFetch.jsx";
 import Star from "./components/Star.jsx";
+import Cart from "./components/Cart.jsx";
+import MainLoading from "./components/loading/MainLoading";
+
+import { CartContext } from "./context/CartContext.jsx";
 
 function App() {
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
   const { data, loading, error } = useFetch("https://dummyjson.com/products");
-
+let { cart, addToCart, updateCart } = useContext(CartContext);
   useEffect(() => {
     if (data && data.products) {
       setProducts(data.products);
@@ -14,37 +17,36 @@ function App() {
   }, [data]);
 
   const addToCartFun = (id) => {
-    let isHave = cart.some(item => item.id === id);
-    console.log(isHave);
+    let isHave = cart.some((item) => item.id === id);
 
     if (!isHave) {
-      const productToAdd = products.find((product) => product.id === id);
-      setCart((prev) => [...prev, productToAdd]);
+      let productToAdd = products.find((product) => product.id === id);
+      productToAdd = { ...productToAdd, amount: 1 };
+      addToCart(productToAdd);
+    } else {
+    
+      updateCart(id, 1);
     }
   };
 
-
   return (
-    <>
-      <section className="w-[90%] custom-600:grid-cols-2 my-[100px] mx-auto grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-10">
-        {loading &&
-          Array.from({ length: 10 }, (_, index) => (
-            <div
-              key={index}
-              className="w-full aspect-[2/3] bg-slate-700 animate-pulse"
-            ></div>
-          ))}
+    <section className="w-[90%] mx-auto py-[100px] relative">
+      <Cart length={cart.length} />
+      <section className="w-full custom-600:grid-cols-2   grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-10">
+        {loading && <MainLoading />}
         {!loading &&
           products.map((product) => (
             <article
               key={product.id}
               className="relative product-card w-full select-none hover:scale-110 rounded transition-all bg-background shadow"
             >
-              <div className="absolute top-3 z-50 bg-slate-200 w-10 h-10 cursor-pointer flex justify-center items-center right-3">
-                <i className="fa-regular cursor-pointer text-[20px] fa-heart"></i>
-              </div>
-              <div className="absolute left-4 top-4 px-2 text-sm py-1 flex font-bold text-gray-100 rounde bg-red-500 rounded-sm justify-center items-center ">
+              
+              <div className="absolute left-4 top-4 px-2 text-sm py-1 flex font-bold text-gray-100 bg-red-500 rounded-sm justify-center items-center ">
                 - {product.discountPercentage.toFixed(1)}%
+              </div>
+
+              <div className="absolute top-3 z-10 bg-slate-200 w-10 h-10 cursor-pointer flex justify-center items-center right-3">
+                <i className="fa-regular cursor-pointer text-[20px] fa-heart"></i>
               </div>
               <div className="w-full aspect-square flex items-center -z-1 h-auto relative">
                 {/* for image */}
@@ -68,7 +70,7 @@ function App() {
               <div className="w-full h-auto py-2 px-5 bg-light_accent">
                 <div className="flex items-center space-x-1 text-xs mb-1">
                   <Star rating={product.rating} />
-                  {/* <p> ( {Math.floor(Math.random() * 10 + 1)} reviews )</p> */}
+
                   <p>( {product.reviews.length} reviews )</p>
                 </div>
 
@@ -86,7 +88,7 @@ function App() {
                     className="text-xs text-gray-100 hover:text-gray-950 cursor-pointer font-bold bg-black bg-opacity-50 p-2 bg-gradient-to-tr px-3 hover:bg-gradient-to-tr transition-all hover:from-background hover:to-primary rounded-md"
                   >
                     Add to Cart
-                    <i className="fa-solid fa-circle-plus ml-2"></i>
+                    <i className="fa-solid fa-cart-shopping ml-2"></i>
                   </p>
                   <p className="text-xs border px-3 py-2 cursor-pointer border-black rounded-md">
                     View
@@ -96,7 +98,7 @@ function App() {
             </article>
           ))}
       </section>
-    </>
+    </section>
   );
 }
 
