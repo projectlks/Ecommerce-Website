@@ -9,7 +9,7 @@ export default function MainLoading() {
           className="w-full aspect-[2/3] border shadow relative aspect-h-3 bg-background "
         >
           <span className="w-[50px] absolute  left-4 top-4 h-7 inline-block bg-slate-700 rounded-sm animate-pulse"></span>
-          <span className="w-[35px] absolute right-3 top-3 aspect-square inline-block bg-slate-700 animate-pulse"></span>
+     
           <div className="w-full aspect-square flex justify-center items-center relative">
             <span className="w-[60%] aspect-square block bg-slate-700 animate-pulse"></span>
             <span className="w-[100px] absolute  right-4 bottom-1 h-10 inline-block bg-slate-700 rounded-sm animate-pulse"></span>
