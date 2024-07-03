@@ -5,12 +5,16 @@ import router from "./routes/root";
 import { RouterProvider } from "react-router-dom";
 import CartContextProvider from "./context/CartContext";
 import { ThemeProvider } from "@material-tailwind/react";
+import MainUrlContextProvider from "./context/MainUrlContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <CartContextProvider>
-    <ThemeProvider>
-   
-      <RouterProvider router={router} />
-    </ThemeProvider>
-  </CartContextProvider>
+  <MainUrlContextProvider>
+    <CartContextProvider>
+      <ThemeProvider>
+     
+          <RouterProvider router={router} />
+      
+      </ThemeProvider>
+    </CartContextProvider>
+  </MainUrlContextProvider>
 );

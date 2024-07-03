@@ -1,6 +1,3 @@
-
-
-
 import React, { createContext, useState } from "react";
 
 const CartContext = createContext();
@@ -8,9 +5,16 @@ const CartContext = createContext();
 export default function CartContextProvider ({ children }) {
   const [cart, setCart] = useState([]);
 
-  const addToCart = (item) => {
-    setCart([...cart, item]); 
-  };
+
+   const addToCart = (item) => {
+     let isHave = cart.some((data) => data.id === item.id);
+
+     if (!isHave) {
+   
+       let productToAdd = { ...item, amount: 1 };
+     setCart([...cart, productToAdd]); 
+     }
+   };
 
   const removeFromCart = (itemId) => {
     const updatedCart = cart.filter((item) => item.id !== itemId);

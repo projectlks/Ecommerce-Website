@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
 
-export default function Cart({ length }) {
+export default function Cart() {
+  const {cart} = useContext(CartContext)
+  const length = cart.length
   return (
     <Link to="/cartDetail">
       <i

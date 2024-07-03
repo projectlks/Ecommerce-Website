@@ -18,7 +18,8 @@ module.exports = withMT({
         secondary_accent: "#E29578"
       },
       screens: {
-        "custom-600": "600px"
+        "custom-600": "600px",
+        "custom-300": "300px"
       }
     }
   },
