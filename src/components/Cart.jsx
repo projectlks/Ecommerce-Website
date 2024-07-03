@@ -8,7 +8,7 @@ export default function Cart() {
   return (
     <Link to="/cartDetail">
       <i
-        className={`fa-solid cursor-pointer fa-cart-shopping fixed top-5 right-7 z-50 text-2xl text-white bg-opacity-50 hover:bg-opacity-80 transition-all bg-black px-4 py-2 rounded `}
+        className={`fa-solid cursor-pointer fa-cart-shopping fixed top-5 right-7 z-50 text-base  md:text-2xl text-white bg-opacity-50 hover:bg-opacity-80 transition-all bg-black px-2 md:px-4 py-1 md:py-2 rounded `}
       >
         {length > 0 && (
           <span
