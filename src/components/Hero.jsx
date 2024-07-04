@@ -3,9 +3,11 @@ import img1 from "../assets/img/1.png";
 import img2 from "../assets/img/2.png";
 import img3 from "../assets/img/3.png";
 
-function Card({ headLine, text, img }) {
+function Card({ headLine, text, img, className }) {
   return (
-    <div className="w-full overflow-y-hidden aspect-[4/2] md:aspect-[3/1] relative flex bg-red-700">
+    <div
+      className={`w-full overflow-y-hidden aspect-[4/2] md:aspect-[3/1] relative flex ${className}`}
+    >
       <div className="xl:w-1/2 md:w-2/3 w-full h-full top-1/2 transform md:-translate-y-1 -translate-y-1/2 absolute md:static md:h-full flex items-center justify-center text-white">
         <span className="text-center inline-block">
           <h1 className="text-xl md:text-3xl xl:text-4xl font-bold mb-1 md:mb-4">
@@ -28,21 +30,24 @@ export default function CarouselCustomNavigation() {
       type: "card",
       headLine: "Welcome to Shopping Mall",
       text: "Your one-stop destination for all your shopping needs.",
-      img: img1
+      img: img1,
+      bgColor: "bg-red-700"
     },
     {
       type: "section",
       backgroundColor: "bg-accent",
       headLine: "Amazing Deals Every Day",
       text: "Discover the best offers and discounts.",
-      img: img2
+      img: img2,
+      bgColor: 'bg-accent'
     },
     {
       type: "section",
       backgroundColor: "bg-green-700",
       headLine: "Join Our Loyalty Program",
       text: "Earn rewards and exclusive benefits.",
-      img: img3
+      img: img3,
+      bgColor: 'bg-blue-500'
     }
   ];
 
@@ -72,6 +77,7 @@ export default function CarouselCustomNavigation() {
               headLine={section.headLine}
               text={section.text}
               img={section.img}
+              className={section.bgColor}
             />
         )
       })}
