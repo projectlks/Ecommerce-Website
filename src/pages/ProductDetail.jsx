@@ -39,22 +39,37 @@ const [isShow, setIsShow] = useState('productDetail')
     <>
       <Cart />
       {product && (
-        <section className=" w-[90%] py-[100px] mx-auto">
+        <section className=" w-[90%]  py-[100px] mx-auto">
           {isShow === "productDetail" && (
             <main className="flex flex-col xl:flex-row w-full transition-all select-none mx-auto ">
-              <div className="xl:w-[40%] w-full h-auto relative rounded-md bg-primary">
-                <img
-                  src={product.thumbnail}
-                  alt={product.title}
-                  className="w-full rounded-md h-auto"
-                />
-                <span className="absolute w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center bottom-2 right-2 md:right-4 md:bottom-4 bg-secondary_accent shadow-lg">
-                  <p className="text-xs md:text-sm text-center text-white font-bold">
-                    {product.warrantyInformation}
-                  </p>
-                </span>
-              </div>
-              <div className="xl:w-[60%] w-full py-[10px] md:py-0 px-[10px] xl:px-[50px]">
+              <section className="xl:w-[45%]   space-x-10 w-full flex">
+                <div className=" h-full aspect-square relative  rounded-md bg-accent">
+                  <img
+                    src={product.thumbnail}
+                    alt={product.title}
+                    className="w-full rounded-md h-auto"
+                  />
+
+                  <span className="absolute w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center bottom-2 right-2 md:right-4 md:bottom-4 bg-secondary_accent shadow-lg">
+                    <p className="text-xs md:text-sm text-center text-white font-bold">
+                      {product.warrantyInformation}
+                    </p>
+                  </span>
+                </div>
+
+                <div className="flex py-4 flex-col justify-between ">
+                  {product.images.map((img, index) => (
+                    <span
+                      key={index}
+                      className="bg-primary rounded block w-20 h-20"
+                    >
+                      <img src={img} className="h-full w-auto mx-auto"></img>
+                    </span>
+                  ))}
+                </div>
+              </section>
+
+              <div className="xl:w-[55%] w-full py-[10px] md:py-0 px-[10px] xl:px-[50px]">
                 <h1 className="text-xl md:text-2xl xl:text-3xl text-accent mb-3 font-bold">
                   {product.title}
                 </h1>
@@ -143,16 +158,28 @@ const [isShow, setIsShow] = useState('productDetail')
           {isShow === "fqa" && <FQA />}
 
           <footer className="flex space-x-10 mt-[30px]">
-            <Button>
-              <p onClick={() => setIsShow("productDetail")}>PRODUCT DETAILS</p>
+            <Button
+              variant={isShow === "productDetail" ? "filled" : "outlined"}
+              onClick={() => setIsShow("productDetail")}
+            >
+              <p>PRODUCT DETAILS</p>
             </Button>
-            <Button>
-              <p onClick={() => setIsShow("reviews")}>ADDITIONAL INFORMATION</p>
-            </Button>
-            <Button onClick={() => setIsShow("reviews")}>
+
+            {/* <Button variant={isShow === "add" ? "" : "outlined"}>
+              <p onClick={() => setIsShow("add")}>ADDITIONAL INFORMATION</p>
+            </Button> */}
+
+            <Button
+              variant={isShow === "reviews" ? "filled" : "outlined"}
+              onClick={() => setIsShow("reviews")}
+            >
               <p>REVIEW ( {product.reviews.length} )</p>
             </Button>
-            <Button onClick={() => setIsShow("fqa")}>
+
+            <Button
+              variant={isShow === "fqa" ? "filled" : "outlined"}
+              onClick={() => setIsShow("fqa")}
+            >
               <p>FQA</p>
             </Button>
           </footer>
@@ -161,3 +188,5 @@ const [isShow, setIsShow] = useState('productDetail')
     </>
   );
 }
+
+//  variant={isActive ? "text" : "outlined"}

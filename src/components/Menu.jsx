@@ -20,8 +20,8 @@ const Li = ({ text, children, isActive, className, ...props }) => {
 };
 
 export default function Menu() {
-  const [type, setType] = useState("beauty");
-  const { changeLink } = useContext(MainUrlContext);
+
+  const { changeLink, type } = useContext(MainUrlContext);
 
   const categories = [
     { text: "Beauty", icon: <FaStar />, type: "beauty" },
@@ -42,7 +42,7 @@ export default function Menu() {
               isActive={type === item.type}
               onClick={() => {
                 changeLink(item.type);
-                setType(item.type);
+               
               }}
               className={`${
                 index === categories.length - 1 ? " md:flex hidden" : "flex"

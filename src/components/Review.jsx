@@ -6,10 +6,17 @@ export default function Review({reviews}) {
   return (
     <>
       {reviews.map((d, i) => (
-        <section key={i} className="bg-white w-full shadow-md rounded-lg p-6 mb-4">
+        <section
+          key={i}
+          className=" w-full shadow-md shadow-accent hover:py-10 .group .group-hover:!scale-75 .hover:scale-125  transition-all bg-gray-200  rounded-lg p-6 mb-4"
+        >
           <div className=" flex  justify-between ">
             <div className="flex space-x-3">
-              <img src={pf1} className="w-10 h-10 " alt={d.reviewerName} />
+              <img
+                src={pf1}
+                className="w-10 rounded-full h-10 "
+                alt={d.reviewerName}
+              />
               <span>
                 <h4 className="text-md font-semibold text-accent">
                   {d.reviewerName}

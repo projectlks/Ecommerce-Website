@@ -45,7 +45,7 @@ function App() {
                   {/* for image */}
 
                   <img
-                    src={product.images[0]}
+                    src={product.thumbnail}
                     alt={product.title}
                     className="float-bottom h-[80%] mx-auto w-auto"
                   />

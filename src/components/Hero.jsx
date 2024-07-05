@@ -39,7 +39,7 @@ export default function CarouselCustomNavigation() {
       headLine: "Amazing Deals Every Day",
       text: "Discover the best offers and discounts.",
       img: img2,
-      bgColor: 'bg-accent'
+      bgColor: "bg-accent"
     },
     {
       type: "section",
@@ -47,7 +47,7 @@ export default function CarouselCustomNavigation() {
       headLine: "Join Our Loyalty Program",
       text: "Earn rewards and exclusive benefits.",
       img: img3,
-      bgColor: 'bg-blue-500'
+      bgColor: "bg-primary"
     }
   ];
 
