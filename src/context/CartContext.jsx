@@ -1,39 +1,91 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useReducer } from "react";
 
 const CartContext = createContext();
 
-export default function CartContextProvider ({ children }) {
-  const [cart, setCart] = useState([]);
+const changeCart = (state, action) => {
+  switch (action.type) {
+    case "ADD":
+      let isHave = state.cart.some(
+        (data) => data.id === action.payload.item.id
+      );
 
+      if (!isHave) {
+        let productToAdd = { ...action.payload.item, amount: 1 };
+        return {
+          ...state,
+          cart: [...state.cart, productToAdd]
+        };
+      }
+      return state;
 
-   const addToCart = (item) => {
-     let isHave = cart.some((data) => data.id === item.id);
+    case "UPDATE":
+      let updatedCart = state.cart.map((item) =>
+        item.id === action.payload.id
+          ? { ...item, amount: item.amount + action.payload.num }
+          : item
+      );
+      return {
+        ...state,
+        cart: [...updatedCart]
+      };
 
-     if (!isHave) {
-   
-       let productToAdd = { ...item, amount: 1 };
-     setCart([...cart, productToAdd]); 
-     }
-   };
+    case "REMOVE":
+      let removedCart = state.cart.filter(
+        (item) => item.id !== action.payload.id
+      );
+      return {
+        ...state,
+        cart: [...removedCart]
+      };
 
-  const removeFromCart = (itemId) => {
-    const updatedCart = cart.filter((item) => item.id !== itemId);
-    setCart(updatedCart); 
+    default:
+      return state;
+  }
+};
+
+export default function CartContextProvider({ children }) {
+  const [state, dispatch] = useReducer(changeCart, {
+    cart: []
+  });
+
+  const addToCart = (item) => {
+    dispatch({
+      type: "ADD",
+      payload: {
+        item
+      }
+    });
   };
-    const updateCart = (id, num) => {
-        let updatedCart = cart.map((item) =>
-          item.id === id ? { ...item, amount: item.amount + num } : item
-        );
-      setCart(updatedCart); 
-    };
+
+  const removeFromCart = (id) => {
+    dispatch({
+      type: "REMOVE",
+      payload: {
+        id
+      }
+    });
+  };
+
+  const updateCart = (id, num) => {
+    dispatch({
+      type: "UPDATE",
+      payload: {
+        id,
+        num
+      }
+    });
+  };
+
+  const ctxValue = {
+    cart: state.cart,
+    addToCart,
+    removeFromCart,
+    updateCart
+  };
 
   return (
-    <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, updateCart }}
-    >
-      {children}
-    </CartContext.Provider>
+    <CartContext.Provider value={ctxValue}>{children}</CartContext.Provider>
   );
-};
+}
 
 export { CartContext, CartContextProvider };

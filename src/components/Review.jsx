@@ -25,7 +25,6 @@ export default function Review({reviews}) {
               </span>
             </div>
             <span>
-              {" "}
               <Star rating={d.rating} />
             </span>
           </div>
