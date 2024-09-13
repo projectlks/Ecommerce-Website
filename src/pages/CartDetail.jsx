@@ -37,22 +37,25 @@ const CartDetail = () => {
                       <img
                         src={item.thumbnail}
                         alt={item.title}
-                        className="h-full"
+                        className="h-full w-auto mx-auto"
                       />
                       <i
                         className="fa-regular fa-circle-xmark absolute text-red-500 cursor-pointer -top-3 -right-3"
                         onClick={() => removeFromCart(item.id)}
                       ></i>
                     </span>
-                    <span className="py-2">
+                    <span >
                       <h4
-                        className="w-[300px] hover:text-accent hover:underline text-base overflow-hidden font-bold text-ellipsis whitespace-nowrap"
+                        className=" hover:text-accent hover:underline text-base overflow-hidden font-bold text-ellipsis whitespace-nowrap"
                         onClick={() => navigate(`/productDetail/${item.id}`)}
                       >
                         {item.title}
                       </h4>
-                      <p className="text-gray-700 text-sm">
-                        Quantity: {item.amount}
+                      <p className="text-gray-700 text-xs">
+                        Quantity : {item.amount}
+                      </p>
+                      <p className="text-gray-700 text-xs">
+                        Discount : - {item.discountPercentage} %
                       </p>
                     </span>
                   </td>
