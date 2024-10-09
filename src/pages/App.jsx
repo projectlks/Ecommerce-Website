@@ -7,11 +7,14 @@ import Hero from "../components/Hero.jsx";
 import Menu from "../components/Menu.jsx";
 import { Link } from "react-router-dom";
 import { MainUrlContext } from "../context/MainUrlContext.jsx";
+// import TopBar from "../components/TopBar.jsx";
+
+import TopBar from '../components/TopBar.tsx'
 
 function App() {
   const { url } = useContext(MainUrlContext); // Get the URL from MainUrlContext
   const [products, setProducts] = useState([]); // State to hold products
-  const { data, loading, error } = useFetch(url); // Fetch data from the URL
+  const { data, loading } = useFetch(url); // Fetch data from the URL
 
   // Effect to set products when data is fetched
   useEffect(() => {
@@ -24,6 +27,8 @@ function App() {
   console.log(products)
   return (
     <section className="w-[90%] mx-auto">
+
+      <TopBar/>
       <Hero />
       <Cart />
       <Menu />
