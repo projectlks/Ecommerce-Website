@@ -72,7 +72,7 @@ const DealsOfTheDay: React.FC = () => {
 
   return (
     <div
-      className="w-full h-[550px] bg-black text-white flex items-center my-[100px]"
+      className="w-full h-[550px] bg-gradient-to-tr from-blue-gray-900 to-black text-white flex items-center my-[100px]"
 
     >
       <div className="w-[25%] text-center font-semibold leading-none text-[3rem]">
@@ -80,14 +80,14 @@ const DealsOfTheDay: React.FC = () => {
           Deals of <br />
           the day
         </h1>
-        <p className="w-full text-[2rem] flex justify-center space-x-3 text-gray-400 mt-10">
+        <p className="w-full text-[2rem] flex justify-center space-x-3 text-gray-400 mt-5">
           {promotionTime.hour < 10 ? `0${promotionTime.hour}` : promotionTime.hour} :
           {promotionTime.min < 10 ? `0${promotionTime.min}` : promotionTime.min} :
           {promotionTime.sec < 10 ? `0${promotionTime.sec}` : promotionTime.sec}
         </p>
       </div>
 
-      <div className="flex space-x-10 w-[75%]">
+      <div className="grid grid-cols-4 gap-5 mr-5 w-[75%]">
         {loading ? ( // Handle loading state
           <p>Loading products...</p>
         ) : (
@@ -113,7 +113,7 @@ const DealsOfTheDay: React.FC = () => {
                     <p>( {product.reviews.length} reviews )</p>
                   </div>
 
-                  <h1 className="w-full overflow-hidden text-xs md:text-base font-bold text-accent truncate">
+                  <h1 className="w-full overflow-hidden text-xs md:text-base font-bold  truncate">
                     {product.title}
                   </h1>
 
