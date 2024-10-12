@@ -1,6 +1,5 @@
-import React from 'react'
-import pf1 from "../assets/img/pf1.jpg";
-import Star from './Star';
+ import pf1 from '../../assets/img/pf1.jpg'
+import Star from './../Star';
 
 export default function Review({reviews}) {
   return (

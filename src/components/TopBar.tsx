@@ -54,12 +54,12 @@ const TopBar: React.FC = () => {
   return (
     <section className="w-full relative h-[90px]">
       <div
-        className={`fixed top-0 left-0 w-full z-50 transition-transform bg-gradient-to-tr from-[#338A91] to-accent flex justify-between items-center p-5 duration-300 shadow-lg ${
+        className={`fixed top-0 left-0 w-full z-50 transition-transform bg-gradient-to-tr from-[#338A91] to-accent flex justify-between items-center px-3 py-5 md:p-5 duration-300 shadow-lg ${
           showTopBar ? "translate-y-0" : "-translate-y-full"
         }`}
       >
         {/* logo */}
-        <header className="text-3xl font-bold text-white">
+        <header className="md:text-3xl text-lg font-bold text-white">
           <h1>E-Com</h1>
         </header>
 
@@ -68,7 +68,7 @@ const TopBar: React.FC = () => {
           value={searchWords}
           onChange={(e) => setSearchWords(e.target.value)} // Update state on input change
           placeholder="Search..."
-          className="bg-white text-gray-700 py-2 px-4 shadow-inner w-[450px] rounded focus:outline-none"
+          className="bg-white text-gray-700 py-2 px-4 shadow-inner w-[70%] md:w-[450px] rounded focus:outline-none"
         />
 
         {/* Result Box */}

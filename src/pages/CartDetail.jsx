@@ -3,15 +3,18 @@ import { CartContext } from "../context/CartContext";
 import { IconButton } from "@material-tailwind/react";
 import { useNavigate } from "react-router";
 import CartTotal from "../components/CartTotal";
+import BackButtom from "../components/BackButtom";
 
 const CartDetail = () => {
   const { cart, updateCart, removeFromCart } = useContext(CartContext); // Get cart and functions from CartContext
   const navigate = useNavigate(); // Hook to navigate programmatically
 
   return (
-    <section className="m-4 w-[90%] mx-auto py-10 select-none">
-      <div className="flex">
-        <table className="w-[70%] h-1 bg-white border border-gray-200">
+    <section className="m-4 w-full md:w-[90%] mx-auto py-10 select-none">
+
+      <BackButtom/>
+      <div className="flex ">
+        <table className="min-w-[786px] xl:w-[70%] h-1 bg-white border border-gray-200">
           <thead className="h-[50px]">
             <tr className="bg-gray-100">
               <th className="border-b max-w-[400px] text-left border-gray-300 py-2 px-4">
@@ -108,7 +111,11 @@ const CartDetail = () => {
             </td>
           )}
         </table>
+
+        <div className="min-w-[500px] w-[30%]">
         <CartTotal />
+
+        </div>
       </div>
     </section>
   );

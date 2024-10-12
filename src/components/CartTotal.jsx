@@ -28,7 +28,7 @@ const finalTotal = (
 ).toFixed(2);
 
   return (
-    <section className="w-[30%] p-5 h-auto">
+    <section className="w-full p-5 h-auto">
       <h1 className="text-center w-full text-2xl font-bold text-accent mb-5">Cart Total</h1>
 
       <form className="border rounded bg-gray-100 py-5 px-4 shadow">
