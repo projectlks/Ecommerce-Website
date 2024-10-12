@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import useFetch from "../hooks/useFetch";
 import Lottie from "lottie-react";
 import loadingAnimation from "../components/loading/loading.json";
+import errorAnimation from "../components/loading/error.json";
 import { CartContext } from "../context/CartContext";
 import Cart from "../components/cartDetail/Cart";
 import Review from "../components/productsDetail/Review";
@@ -61,6 +62,12 @@ export default function ProductDetail() {
 
   return (
     <>
+      {error && (
+        <div className="flex flex-col items-center justify-center h-screen">
+          <Lottie animationData={errorAnimation} loop={true} />
+         
+        </div>
+      )}
       {loading ? (
         <div className="flex flex-col items-center justify-center h-screen">
           <Lottie animationData={loadingAnimation} loop={true} />
@@ -78,11 +85,7 @@ export default function ProductDetail() {
               {isShow === "productDetail" && (
                 <main className="flex flex-col xl:flex-row w-full transition-all select-none mx-auto">
                   <LeftSide product={product} />
-                  <RightSide
-                    product={product}
-                    amount={amount}
-                 
-                  />
+                  <RightSide product={product} amount={amount} id={id} />
                 </main>
               )}
 

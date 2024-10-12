@@ -1,41 +1,50 @@
-import React, { createContext, useReducer } from "react";
+import { createContext,  useReducer } from "react";
 
 const CartContext = createContext();
 
 const changeCart = (state, action) => {
   switch (action.type) {
+    case "SET_CART":
+      return { ...state, cart: action.payload };
+
     case "ADD":
-      let isHave = state.cart.some(
+      const isHave = state.cart.some(
         (data) => data.id === action.payload.item.id
       );
 
       if (!isHave) {
-        let productToAdd = { ...action.payload.item, amount: 1 };
+        const productToAdd = { ...action.payload.item, amount: 1 };
+        const finalArray = [...state.cart, productToAdd];
+
+        localStorage.setItem("cartForEcom", JSON.stringify(finalArray));
         return {
           ...state,
-          cart: [...state.cart, productToAdd]
+          cart: finalArray,
         };
       }
       return state;
 
     case "UPDATE":
-      let updatedCart = state.cart.map((item) =>
+      const updatedCart = state.cart.map((item) =>
         item.id === action.payload.id
           ? { ...item, amount: item.amount + action.payload.num }
           : item
       );
+      localStorage.setItem("cartForEcom", JSON.stringify(updatedCart));
       return {
         ...state,
-        cart: [...updatedCart]
+        cart: updatedCart,
       };
 
     case "REMOVE":
-      let removedCart = state.cart.filter(
+      const removedCart = state.cart.filter(
         (item) => item.id !== action.payload.id
       );
+
+      localStorage.setItem("cartForEcom", JSON.stringify(removedCart));
       return {
         ...state,
-        cart: [...removedCart]
+        cart: removedCart,
       };
 
     default:
@@ -44,16 +53,20 @@ const changeCart = (state, action) => {
 };
 
 export default function CartContextProvider({ children }) {
-  const [state, dispatch] = useReducer(changeCart, {
-    cart: []
-  });
+  const data = localStorage.getItem("cartForEcom");
+
+  const initialState = {
+    cart: data ? JSON.parse(data) : [], // Initialize cart from local storage
+  };
+
+  const [state, dispatch] = useReducer(changeCart, initialState);
 
   const addToCart = (item) => {
     dispatch({
       type: "ADD",
       payload: {
-        item
-      }
+        item,
+      },
     });
   };
 
@@ -61,8 +74,8 @@ export default function CartContextProvider({ children }) {
     dispatch({
       type: "REMOVE",
       payload: {
-        id
-      }
+        id,
+      },
     });
   };
 
@@ -71,8 +84,8 @@ export default function CartContextProvider({ children }) {
       type: "UPDATE",
       payload: {
         id,
-        num
-      }
+        num,
+      },
     });
   };
 
@@ -80,7 +93,7 @@ export default function CartContextProvider({ children }) {
     cart: state.cart,
     addToCart,
     removeFromCart,
-    updateCart
+    updateCart,
   };
 
   return (

@@ -1,20 +1,31 @@
 import { Button, IconButton } from "@material-tailwind/react";
 import Star from "../Star";
-import { Product } from "../../pages/ProductDetail"; 
-import { useContext } from "react";
+import { Product } from "../../pages/ProductDetail";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../context/CartContext";
 
 interface RightSideProps {
   product: Product;
   amount: number;
+  id: string | undefined;
 }
 
-export default function RightSide({
-  product,
-  amount,
-}: RightSideProps) {
+export default function RightSide({ product, amount, id }: RightSideProps) {
   // Access cart functions using the CartContext
-  const { addToCart, updateCart } = useContext(CartContext);
+  const { cart, addToCart, updateCart } = useContext(CartContext);
+  const [isInCart, setIsIncart] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (!cart.length) return;
+    
+    if (cart.some((cartItem: any) => cartItem.id === Number(id))) {
+      setIsIncart(true);
+    } else {
+      setIsIncart(false);
+    }
+  }, [cart, id]);
+  
+  
 
   return (
     <div className="xl:w-[55%] w-full py-[10px] md:py-0 px-[10px] xl:px-[50px]">
@@ -26,9 +37,7 @@ export default function RightSide({
       {/* Product Rating and Number of Reviews */}
       <div className="flex items-center text-base mb-3">
         <Star rating={product.rating} />
-        <p className="ml-2">
-          ( {product.reviews.length} customers reviews )
-        </p>
+        <p className="ml-2">( {product.reviews.length} customers reviews )</p>
       </div>
 
       {/* Product Price and Discount Information */}
@@ -36,7 +45,6 @@ export default function RightSide({
         <p className="text-gray-900 font-bold">${product.price}</p>
         {product.discountPercentage && (
           <>
-            {/* Original price before discount */}
             <p className="line-through text-gray-500">
               $
               {(
@@ -44,7 +52,6 @@ export default function RightSide({
                 (product.price * product.discountPercentage) / 100
               ).toFixed(2)}
             </p>
-            {/* Discount percentage */}
             <p className="border border-black px-2 py-[2px]">
               -{product.discountPercentage.toFixed(1)}%
             </p>
@@ -92,10 +99,14 @@ export default function RightSide({
 
       {/* Add to Cart Section with Quantity Controls */}
       <div className="flex items-center mt-10 space-x-10">
-        {/* Button to add the product to cart */}
-        <Button onClick={() => addToCart(product)}>
-          Add to Cart
-        </Button>
+        {/* Show "Add to Cart" if the product is not in the cart, else show "Already in Cart" */}
+
+        {!isInCart ? (
+          <Button onClick={() => {addToCart(product); setIsIncart(true)}}>Add to Cart</Button>
+        ) : (
+            <Button disabled>Already in Cart</Button>
+
+        )}
 
         {/* Quantity selector with +/- buttons */}
         <span className="flex items-center">
