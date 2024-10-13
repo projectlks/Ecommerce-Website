@@ -24,6 +24,8 @@ function App() {
       <Promotion />
 
       <ShowProduct />
+
+      {/* <OrderForm/> */}
       <Footer />
     </section>
   );

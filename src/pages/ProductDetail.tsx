@@ -76,12 +76,12 @@ export default function ProductDetail() {
           </h1>
         </div>
       ) : (
-        <section>
+        <section className=""> 
           <BackButtom />
           <Cart />
 
           {product && (
-            <section className="w-[90%] py-[100px] mx-auto">
+            <section className="xl:w-[80%] w-[90%] py-[100px] mx-auto">
               {isShow === "productDetail" && (
                 <main className="flex flex-col xl:flex-row w-full transition-all select-none mx-auto">
                   <LeftSide product={product} />

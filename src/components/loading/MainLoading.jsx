@@ -3,7 +3,7 @@ import React from "react";
 export default function MainLoading() {
   return (
     <>
-      {Array.from({ length: 10 }, (_, index) => (
+      {Array.from({ length: 8 }, (_, index) => (
         <div key={index} className="w-full aspect-[2/3]   relative aspect-h-3 ">
           <span className="w-[50px] absolute bg-gray-500  z-10  left-2 top-2 md:left-4 md:top-4 h-7 inline-block bg-slate-700 rounded-sm animate-pulse"></span>
 

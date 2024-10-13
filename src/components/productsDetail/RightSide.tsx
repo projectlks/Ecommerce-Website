@@ -28,9 +28,9 @@ export default function RightSide({ product, amount, id }: RightSideProps) {
   
 
   return (
-    <div className="xl:w-[55%] w-full py-[10px] md:py-0 px-[10px] xl:px-[50px]">
+    <div className="xl:w-[55%] font-['lato'] w-full py-[10px] md:py-0 px-[10px] xl:px-[50px]">
       {/* Product Title */}
-      <h1 className="text-xl md:text-2xl xl:text-3xl text-accent mb-3 font-bold">
+      <h1 className="text-xl md:text-2xl xl:text-4xl text-accent mb-3 font-extrabold">
         {product.title}
       </h1>
 
