@@ -29,18 +29,18 @@ export default function
     }, [data]);
   
   return (
-    <section className="w-full grid grid-cols-2 transition-all  min-h-screen md:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-10">
+    <section className="w-[90%] mx-auto grid grid-cols-2 transition-all  min-h-screen md:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-5">
     {loading && <MainLoading />}
 
     {!loading &&
       products.map((product) => (
         <Link to={`productDetail/${product.id}`} key={product.id}>
-          <article className="relative product-card cursor-pointer w-full select-none xl:hover:scale-110 rounded transition-all">
+          <article className="relative product-card cursor-pointer w-full select-none xl:hover:scale-110  transition-all">
             <div className="absolute md:left-4 left-2 top-2 md:top-4 px-1 md:px-2 z-10 text-[10px] md:text-sm py-[2px] md:py-1 flex font-bold text-gray-100 bg-red-500 rounded-sm justify-center items-center">
               - {product.discountPercentage.toFixed(1)}%
             </div>
 
-            <div className="w-full aspect-square flex items-center bg-background h-auto relative">
+            <div className="w-full aspect-square flex items-center rounded-xl hover:bg-primary duration-200 bg-background h-auto relative">
               {/* Product Image */}
               <img
                 src={product.thumbnail}

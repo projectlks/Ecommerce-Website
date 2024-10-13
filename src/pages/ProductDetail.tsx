@@ -11,7 +11,7 @@ import FQA from "../components/productsDetail/FQA";
 import BackButtom from "../components/BackButtom";
 import Footer from "../components/productsDetail/Footer";
 import LeftSide from "../components/productsDetail/LeftSide";
-import RightSide from "../components/productsDetail/RightSide"; // Import the new RightSide component
+import RightSide from "../components/productsDetail/RightSide";
 
 export interface Product {
   id: number;

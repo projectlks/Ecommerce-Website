@@ -1,5 +1,3 @@
-
-
 import Hero from "../components/Hero.jsx";
 import Menu from "../components/Menu.jsx";
 
@@ -7,24 +5,26 @@ import Promotion from "./Promotions.tsx";
 
 import TopBar from "../components/TopBar.tsx";
 import Products from "./Products.tsx";
+import Footer from "./Footer.tsx";
+import ShowProduct from "./ShowProduct.jsx";
 
 function App() {
   return (
-
-    
     <section className="w-full ">
       <TopBar />
 
       <div className="w-[90%] mx-auto">
-      <Hero />
-    
-      <Menu />
+        <Hero />
 
-      <Products />
+        <Menu />
 
+        <Products />
       </div>
-    
+
       <Promotion />
+
+      <ShowProduct />
+      <Footer />
     </section>
   );
 }

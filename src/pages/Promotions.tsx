@@ -87,11 +87,11 @@ const DealsOfTheDay: React.FC = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 w-full xl:grid-cols-4 gap-5 xl:mr-5 xl:w-[75%]">
+      <div className="grid grid-cols-2 w-full xl:grid-cols-4 gap-5 xl:mr-5 xl:w-[75%]">
         {loading ? ( // Handle loading state
           <p>Loading products...</p>
         ) : (
-          products.slice(0, 1).map((product) => (
+          products.slice(0, 4).map((product) => (
             <Link to={`productDetail/${product.id}`} key={product.id}>
               <article className="relative product-card cursor-pointer bg-accent w-full select-none xl:hover:scale-110 rounded transition-all">
                 <div className="absolute md:left-4 left-2 top-2 md:top-4 px-1 md:px-2 z-10 text-[10px] md:text-sm py-[2px] md:py-1 flex font-bold text-gray-100 bg-red-500 rounded-sm justify-center items-center">
