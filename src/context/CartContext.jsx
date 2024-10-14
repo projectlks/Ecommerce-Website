@@ -47,6 +47,14 @@ const changeCart = (state, action) => {
         cart: removedCart,
       };
 
+        case 'CLEAR' :
+          localStorage.setItem("cartForEcom", JSON.stringify([]));
+         return {
+          ...state,
+          cart: []
+         }
+
+
     default:
       return state;
   }
@@ -89,11 +97,18 @@ export default function CartContextProvider({ children }) {
     });
   };
 
+  const clearCart = () =>{
+    dispatch({
+      type: 'CLEAR',
+    })
+  }
+
   const ctxValue = {
     cart: state.cart,
     addToCart,
     removeFromCart,
     updateCart,
+    clearCart
   };
 
   return (

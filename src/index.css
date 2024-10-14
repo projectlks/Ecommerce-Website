@@ -6,7 +6,7 @@
 
 * {
     scrollbar-width: 10px;
-    /* For Firefox */
+   
 }
 
 *::-webkit-scrollbar {
@@ -27,4 +27,13 @@
 }
 
 
+/* Add this to your Tailwind CSS config or a global CSS file */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
 

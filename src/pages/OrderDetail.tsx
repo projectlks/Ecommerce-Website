@@ -1,30 +1,49 @@
 import useCartTotals from "../hooks/useCartTotal";
 import { CartContext } from "../context/CartContext";
-import { useContext, useState } from "react";
-
-interface OrderData {
-  fullName: string;
-  address: string;
-  pin: string;
-  phNo: string;
-  backupPhNo: string;
-}
+import { useContext, useEffect, useState } from "react";
+import { Button } from "@material-tailwind/react";
+import { useNavigate } from "react-router";
 
 export default function OrderDetail() {
-  const { cart } = useContext(CartContext);
-  
+  const { cart, clearCart } = useContext(CartContext);
+
   const data = localStorage.getItem("OrderData");
-  const orderData = data ? JSON.parse(data) : [] // Initialize cart from local storage
-  const { totalCost, totalDiscount, tax, finalTotal } = useCartTotals();
+  const orderData = data ? JSON.parse(data) : []; // Initialize cart from local storage
+  const { totalCost, totalDiscount, finalTotal } = useCartTotals();
 
+  const newOrder = [
+    {
+      products: cart, // cart items
+      ...orderData, // spread operator to include other order details
+      id: Math.floor(Math.random() * 1000000),
+      date: new Date().toLocaleString("en-GB", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        timeZone: "Asia/Yangon", // Myanmar Time
+      }),
+    },
+  ];
 
-  
+  const dataFromLocalStorage = localStorage.getItem('order')
+
+  const order = dataFromLocalStorage ? [...newOrder, ...JSON.parse(dataFromLocalStorage) ] : newOrder
+
+  const navigate = useNavigate();
+
+  const orderComfirm = () => {
+    localStorage.setItem("order", JSON.stringify(order));
+    clearCart();
+    navigate("/order");
+  };
 
   return (
-    <section className="w-[90%] flex flex-col md:flex-row 2xl:w-[80%] py-[100px] mx-auto h-screen">
-      <div className="md:w-1/2 w-full grid grid-cols-1 2xl:grid-cols-2 gap-10">
-        {cart.map((item : any) => (
-          <div key={item.id} className="w-full">
+    <section className="md:w-[90%] w-[95%] flex flex-col-reverse xl:flex-row 2xl:w-[80%] py-[100px] mx-auto overflow-auto scrollbar-hide  h-screen">
+      <div className="xl:w-1/2 w-full md:w-3/4  mt-10 xl:mt-0 mx-auto grid grid-cols-1 2xl:grid-cols-2 gap-10">
+        {cart.map((item: any) => (
+          <div key={item.id} className="w-full  aspect-[3/1] h-auto">
             <div className="order-item-box flex items-center px-5 h-full w-full py-5 space-x-10 bg-background shadow-md rounded-lg">
               <div className="image-section w-1/3 flex items-center justify-center rounded-md bg-primary aspect-square">
                 <img
@@ -50,8 +69,8 @@ export default function OrderDetail() {
       </div>
 
       {/* Right Section */}
-      <section className="md:w-1/2 w-full">
-        <div className="order-detail-box w-[90%] xl:w-[70%] mx-auto border rounded-md shadow-lg">
+      <section className="xl:w-1/2 w-full md:w-3/4  mx-auto ">
+        <div className="order-detail-box w-[95%]  md:w-[90%] xl:w-[70%] mx-auto border rounded-md shadow-lg">
           {/* Order Details Header */}
           <div className="order-detail-header px-6 p-4 text-background rounded-t-xl bg-accent mb-4">
             <p className="text-2xl font-bold">Order Details</p>
@@ -114,15 +133,16 @@ export default function OrderDetail() {
           </div>
         </div>
 
-        {/* Payment Method Selection */}
-        <div className="bottom-section py-4 w-[90%] xl:w-[70%] mx-auto">
-          <div className="select-container">
-            <select className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent">
-              <option value="none">Select payment method</option>
-              <option value="online" disabled>Pay online</option>
-              <option value="cod">Cash on delivery</option>
-            </select>
-          </div>
+        {/* Payment */}
+        <div className=" w-[90%] xl:w-[70%] mx-auto flex justify-end h-[100px] items-center">
+          <Button
+            onClick={() => {
+              orderComfirm();
+            }}
+            className="bg-accent text-base md:text-xl font-extrabold "
+          >
+            Order Confirm
+          </Button>
         </div>
       </section>
     </section>

@@ -35,7 +35,7 @@ export default function OrderForm() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+
     localStorage.setItem('OrderData', JSON.stringify(formData))
     navigate('/orderDetail')
     
@@ -43,8 +43,8 @@ export default function OrderForm() {
   };
 
   return (
-    <div className="mx-auto p-6 h-screen font-['lato']">
-      <form onSubmit={handleSubmit} className="space-y-4 mx-auto w-[800px]">
+    <div className="mx-auto w-full md:p-6 p-0 py-20 min-h-screen font-['lato']">
+      <form onSubmit={handleSubmit} className="space-y-4 mx-auto w-[90%] max-w-[800px]">
         {[
           { label: "Full name", name: "fullName", type: "text", placeholder: "Full Name" },
           { label: "Ph. Number", name: "phNo", type: "number", placeholder: "Ph. no" },
@@ -65,7 +65,7 @@ export default function OrderForm() {
               value={formData[name  as keyof OrderFormData ]}
               onChange={handleChange}
               required
-              className="w-full p-3 bg-background h-[60px] rounded-lg focus:outline-none border-[3px] focus:border-accent"
+              className="w-full p-3 bg-background h-[40px] md:h-[60px] rounded-lg focus:outline-none border-[2px] md:border-[3px] focus:border-accent"
             />
           </div>
         ))}

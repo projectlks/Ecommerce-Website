@@ -5,6 +5,7 @@ import Login from "../pages/Login";
 import ProductDetail from "../pages/ProductDetail";
 import OrderForm from "../pages/OrderForm.tsx";
 import OrderDetail from "../pages/OrderDetail.tsx";
+import Order from "../pages/Order.tsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   }, {
     path: '/orderDetail',
     element: <OrderDetail/>
+  }
+  , {
+    path: '/order',
+    element: <Order/>
   }
 ]);
 
