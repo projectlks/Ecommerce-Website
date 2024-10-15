@@ -65,7 +65,6 @@ export default function ProductDetail() {
       {error && (
         <div className="flex flex-col items-center justify-center h-screen">
           <Lottie animationData={errorAnimation} loop={true} />
-         
         </div>
       )}
       {loading ? (
@@ -76,7 +75,7 @@ export default function ProductDetail() {
           </h1>
         </div>
       ) : (
-        <section className=""> 
+        <section className="">
           <BackButtom />
           <Cart />
 

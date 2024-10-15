@@ -1,7 +1,7 @@
 import Hero from "../components/Hero.jsx";
 import Menu from "../components/Menu.jsx";
 
-import Promotion from "./Promotions.tsx";
+import Promotion from "./DealsOfTheDay.tsx";
 
 import TopBar from "../components/TopBar.tsx";
 import Products from "./Products.tsx";

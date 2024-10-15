@@ -17,20 +17,18 @@ export default function RightSide({ product, amount, id }: RightSideProps) {
 
   useEffect(() => {
     if (!cart.length) return;
-    
+
     if (cart.some((cartItem: any) => cartItem.id === Number(id))) {
       setIsIncart(true);
     } else {
       setIsIncart(false);
     }
   }, [cart, id]);
-  
-  
 
   return (
     <div className="xl:w-[55%] font-['lato'] w-full py-[10px] md:py-0 px-[10px] xl:px-[50px]">
       {/* Product Title */}
-      <h1 className="text-xl md:text-2xl xl:text-4xl text-accent mb-3 font-extrabold">
+      <h1 className="text-lg md:text-2xl xl:text-4xl text-accent mb-3 font-extrabold">
         {product.title}
       </h1>
 
@@ -102,10 +100,16 @@ export default function RightSide({ product, amount, id }: RightSideProps) {
         {/* Show "Add to Cart" if the product is not in the cart, else show "Already in Cart" */}
 
         {!isInCart ? (
-          <Button onClick={() => {addToCart(product); setIsIncart(true)}}>Add to Cart</Button>
+          <Button
+            onClick={() => {
+              addToCart(product);
+              setIsIncart(true);
+            }}
+          >
+            Add to Cart
+          </Button>
         ) : (
-            <Button disabled>Already in Cart</Button>
-
+          <Button disabled>Already in Cart</Button>
         )}
 
         {/* Quantity selector with +/- buttons */}

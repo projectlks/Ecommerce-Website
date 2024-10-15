@@ -2,16 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Root Variables */
+:root {
+    --slide-count: 6; /* Number of slides in the carousel */
+    --slide-width: 200px; /* Width of a single slide */
+    --duration: 200s; /* Duration for the scrolling animation */
+    --gap: 10px; /* Space between slides */
+    --carousel-edge-pos: calc(0px); /* Initial value, will be updated dynamically */
+}
 
-
+/* Global Styles */
 * {
     scrollbar-width: 10px;
-   
+    font-family: 'Lato', sans-serif;
 }
 
 *::-webkit-scrollbar {
     width: 10px;
-
 }
 
 *::-webkit-scrollbar-thumb {
@@ -20,20 +27,47 @@
     cursor: pointer;
 }
 
-@media screen and (min-width: 600px) {
-    .main {
-        grid-column: 2;
-    }
-}
-
-
-/* Add this to your Tailwind CSS config or a global CSS file */
 .scrollbar-hide::-webkit-scrollbar {
     display: none;
 }
 
 .scrollbar-hide {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
+/* Carousel Section Styles */
+.carousel-section {
+    overflow: hidden;
+}
+
+.css-carousel {
+    display: flex;
+    align-items: stretch;
+    gap: var(--gap);
+    -webkit-overflow-scrolling: touch;
+    animation: scroll var(--duration) linear infinite;
+    animation-play-state: running;
+}
+
+.css-carousel:hover {
+    animation-play-state: paused;
+}
+
+/* Keyframes for Scrolling Animation */
+@keyframes scroll {
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(var(--carousel-edge-pos));
+    }
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+    :root {
+        --slide-width: 300px;
+    }
+}

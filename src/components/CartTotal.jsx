@@ -23,9 +23,6 @@ export default function CartTotal() {
     .toFixed(2);
   const tax = ((totalCost - totalDiscount) * 0.05).toFixed(2);
 
-
-
-  
   const finalTotal = (
     parseFloat(totalCost) -
     parseFloat(totalDiscount) +
