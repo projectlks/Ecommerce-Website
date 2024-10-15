@@ -3,13 +3,6 @@
 @tailwind utilities;
 
 /* Root Variables */
-:root {
-    --slide-count: 6; /* Number of slides in the carousel */
-    --slide-width: 200px; /* Width of a single slide */
-    --duration: 200s; /* Duration for the scrolling animation */
-    --gap: 10px; /* Space between slides */
-    --carousel-edge-pos: calc(0px); /* Initial value, will be updated dynamically */
-}
 
 /* Global Styles */
 * {
@@ -48,6 +41,7 @@
     -webkit-overflow-scrolling: touch;
     animation: scroll var(--duration) linear infinite;
     animation-play-state: running;
+    width: auto;
 }
 
 .css-carousel:hover {

@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import useFetch from "../hooks/useFetch";
 import Lottie from "lottie-react";
 import loadingAnimation from "../components/loading/loading.json";
-import errorAnimation from "../components/loading/error.json";
+import errorAnimation from "../components/loading/productError.json";
 import { CartContext } from "../context/CartContext";
 import Cart from "../components/cartDetail/Cart";
 import Review from "../components/productsDetail/Review";

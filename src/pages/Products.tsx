@@ -15,7 +15,7 @@ export default function () {
 
   const { url } = context; // Destructure the `url` from context
   const [products, setProducts] = useState<Product[]>([]); // State to hold the fetched products
-  const { data, loading } = useFetch(url); // Fetching data using the custom `useFetch` hook
+  const { data, loading, error } = useFetch(url); // Fetching data using the custom `useFetch` hook
 
   // useEffect to set products when data is fetched and available
   useEffect(() => {
@@ -27,7 +27,9 @@ export default function () {
   return (
     <section className="md:w-[90%] w-full mx-auto grid grid-cols-2 transition-all xl:min-h-screen md:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-5">
       {/* Display loading component when fetching data */}
-      {loading && <MainLoading />}
+      {loading && <MainLoading amount={8} />}
+
+      {error && <h1> This is error </h1>}
 
       {/* Map through the products and display each product card when not loading */}
       {!loading &&

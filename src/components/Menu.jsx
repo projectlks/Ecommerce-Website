@@ -47,10 +47,10 @@ export default function Menu() {
       </span>
 
       {/* "See More..." Button with Right Arrow */}
-      <span className="absolute right-0 top-0 flex items-center space-x-1  cursor-pointer">
+      {/* <span className="absolute right-0 top-0 flex items-center space-x-1  cursor-pointer">
         <span className=" text-2xl font-bold ">See More </span>
         <FaArrowRight />
-      </span>
+      </span> */}
     </div>
   );
 }
