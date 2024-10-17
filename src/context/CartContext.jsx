@@ -116,4 +116,4 @@ export default function CartContextProvider({ children }) {
   );
 }
 
-export { CartContext, CartContextProvider };
+export { CartContext };

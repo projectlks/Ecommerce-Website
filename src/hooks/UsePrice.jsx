@@ -9,3 +9,28 @@ const usePrice = (price, discount) => {
 
   return { originalPrice, discountPrice };
 };
+
+
+// const totalCost = cart
+// .reduce(
+//   (total, item) =>
+//     total +
+//     (item.price + (item.price * item.discountPercentage) / 100) *
+//       item.amount,
+//   0
+// )
+// .toFixed(2);
+// const totalDiscount = cart
+// .reduce(
+//   (total, item) =>
+//     total + ((item.price * item.discountPercentage) / 100) * item.amount,
+//   0
+// )
+// .toFixed(2);
+// const tax = ((totalCost - totalDiscount) * 0.05).toFixed(2);
+
+// const finalTotal = (
+// parseFloat(totalCost) -
+// parseFloat(totalDiscount) +
+// parseFloat(tax)
+// ).toFixed(2);

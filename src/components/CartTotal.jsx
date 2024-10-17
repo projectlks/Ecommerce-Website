@@ -1,33 +1,20 @@
 import React, { useContext } from "react";
 import { CartContext } from "../context/CartContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useCartTotals from "../hooks/useCartTotal";
+import { Button } from "@material-tailwind/react";
 
 export default function CartTotal() {
+  const { totalCost, totalDiscount, finalTotal, tax } = useCartTotals();
   const { cart } = useContext(CartContext);
+  const navigate = useNavigate();
+  const orderNow = () => {
 
-  const totalCost = cart
-    .reduce(
-      (total, item) =>
-        total +
-        (item.price + (item.price * item.discountPercentage) / 100) *
-          item.amount,
-      0
-    )
-    .toFixed(2);
-  const totalDiscount = cart
-    .reduce(
-      (total, item) =>
-        total + ((item.price * item.discountPercentage) / 100) * item.amount,
-      0
-    )
-    .toFixed(2);
-  const tax = ((totalCost - totalDiscount) * 0.05).toFixed(2);
-
-  const finalTotal = (
-    parseFloat(totalCost) -
-    parseFloat(totalDiscount) +
-    parseFloat(tax)
-  ).toFixed(2);
+    if (cart.length) {
+      navigate("/orderForm");
+;
+    }
+  };
 
   return (
     <section className="w-full p-5 h-auto">
@@ -56,14 +43,19 @@ export default function CartTotal() {
         </div>
 
         <div className="w-full flex justify-center mt-5">
-          <Link to={"/orderForm"}>
-            <button
-              type="button"
-              className="bg-accent text-white py-2 px-4 rounded "
+          <span
+            onClick={() => {
+              orderNow();
+
+            }}
+          >
+            <Button
+              disabled={!cart.length}
+              className="bg-accent text-white py-2 text-base px-4 rounded "
             >
               Order Now
-            </button>
-          </Link>
+            </Button>
+          </span>
         </div>
       </form>
     </section>

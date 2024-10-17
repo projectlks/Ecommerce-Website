@@ -22,7 +22,7 @@ export default function ResultsBox({ products }: Props) {
 
         <div className="md:w-[500px] w-[90%] mx-auto bg-white px-2">
           {products.map((product) => (
-        <Link to={`productDetail/${product.id}`} key={product.id}>
+        <Link to={`/productDetail/${product.id}`} key={product.id}>
 
             <div
               className="product-item py-2 hover:bg-accent text-gray-900 hover:text-background transition-all duration-300 rounded-md px-4 flex space-x-4 border-b"

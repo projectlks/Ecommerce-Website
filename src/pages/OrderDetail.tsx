@@ -27,13 +27,18 @@ export default function OrderDetail() {
     },
   ];
 
-  const dataFromLocalStorage = localStorage.getItem('order')
+  const dataFromLocalStorage = localStorage.getItem("order");
 
-  const order = dataFromLocalStorage ? [...newOrder, ...JSON.parse(dataFromLocalStorage) ] : newOrder
+  const order = dataFromLocalStorage
+    ? [...newOrder, ...JSON.parse(dataFromLocalStorage)]
+    : newOrder;
 
   const navigate = useNavigate();
 
   const orderComfirm = () => {
+    if (!cart.length) return;
+  
+    
     localStorage.setItem("order", JSON.stringify(order));
     clearCart();
     navigate("/order");

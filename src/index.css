@@ -48,6 +48,34 @@
     animation-play-state: paused;
 }
 
+/* Hide scrollbar */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none; /* for Firefox */
+  }
+
+  
+  /* Custom scroll-snap classes for Tailwind */
+.scroll-snap-x {
+    scroll-snap-type: x mandatory;
+  }
+  
+  .scroll-snap-align-start {
+    scroll-snap-align: start;
+  }
+  
+  .scroll-snap-align-center {
+    scroll-snap-align: center;
+  }
+  
+  .scroll-snap-align-end {
+    scroll-snap-align: end;
+  }
+  
+
 /* Keyframes for Scrolling Animation */
 @keyframes scroll {
     0%, 100% {

@@ -1,6 +1,6 @@
 import { Button, IconButton } from "@material-tailwind/react";
 import Star from "../Star";
-import { Product } from "../../pages/ProductDetail";
+// import { Product } from "../../pages/ProductDetail";
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../context/CartContext";
 
@@ -101,9 +101,11 @@ export default function RightSide({ product, amount, id }: RightSideProps) {
 
         {!isInCart ? (
           <Button
+          className="bg-accent text-background transition-all"
             onClick={() => {
               addToCart(product);
               setIsIncart(true);
+              
             }}
           >
             Add to Cart

@@ -100,7 +100,7 @@ const DealsOfTheDay: React.FC = () => {
   }, [products]);
 
   return (
-    <div className="w-full overflow-hidden h-auto xl:h-[550px] flex flex-col xl:flex-row bg-gradient-to-tr from-blue-gray-900 py-20 xl:py-0 to-black text-white items-center my-[100px]">
+    <div className="w-full overflow-hidden h-auto xl:h-[550px] flex flex-col xl:flex-row bg-gradient-to-tr from-blue-gray-900 py-20 xl:py-0 to-black text-white items-center mt-[100px]">
       <div className="xl:w-[25%] w-full text-center font-semibold leading-none text-xl md:text-[2rem] xl:text-[3rem]">
         <h1 className="w-full block">
           Deals of <br /> the day
