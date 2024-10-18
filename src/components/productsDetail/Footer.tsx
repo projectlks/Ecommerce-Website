@@ -1,6 +1,6 @@
 import { Button } from "@material-tailwind/react";
 import React from "react";
-import { Product } from "../../pages/ProductDetail";
+
 
 // Define the Props interface for the Footer component
 interface Props {

@@ -39,7 +39,7 @@ export default function ProductDetail() {
     setAmount(amount);
   }, [cart, id]);
   
-  console.log(product);
+
   
 
   return (

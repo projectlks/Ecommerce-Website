@@ -2,6 +2,8 @@ import { useNavigate } from "react-router";
 import left from "../assets/img/left.png";
 import right from "../assets/img/right.png";
 import clock from "../assets/img/clock.png";
+import video from "../assets/video.mp4";
+import bg from '../assets/img/shoeBg.jpg'
 
 import { Button } from "@material-tailwind/react";
 
@@ -17,9 +19,9 @@ export default function ProductShowcase() {
           </h1>
 
           <p className="text-base my-5 text-balance text-center md:text-left">
-            "The Rolex Cellini Moonphase is a masterpiece of horology,
-            featuring a moon phase complication and exquisite design. It
-            reflects Rolex's commitment to precision and elegance."
+            "The Rolex Cellini Moonphase is a masterpiece of horology, featuring
+            a moon phase complication and exquisite design. It reflects Rolex's
+            commitment to precision and elegance."
           </p>
 
           <h3 className="text-[25px] my-5 font-extrabold text-center md:text-left">
@@ -95,6 +97,44 @@ export default function ProductShowcase() {
           </span>
         </div>
       </section>
+
+      {/* Video Section */}
+      <section className="w-full h-auto flex justify-center items-center py-12">
+        <video
+          src={video}
+          autoPlay      
+               loop
+          muted
+          playsInline
+          className="w-full max-w-[800px] h-auto"
+        ></video>
+      </section>
+
+
+      <section
+  className="w-full h-screen bg-cover bg-center flex flex-col justify-center items-center text-white px-4 md:px-8 text-center"
+  style={{ backgroundImage: `url(${bg})` }}
+>
+  <h1 className="text-[28px] md:text-[48px] xl:text-[64px] font-bold mb-4 ">
+    Discover Your Perfect Products!
+  </h1>
+
+  <p className="text-base md:text-lg xl:text-2xl mb-6 font-medium max-w-[600px] ">
+    Explore our wide range of products, carefully curated to meet your unique
+    preferences. Take the first step towards elevating your style and lifestyle.
+  </p>
+
+  <span
+      className="bg-accent text-background px-8 py-3 rounded-full text-sm md:text-lg font-semibold cursor-pointer transition duration-300"
+      onClick={() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to the top
+        navigate('/allProducts'); // Then navigate
+      }}
+    >
+      Shop Now
+    </span>
+</section>
+
     </section>
   );
 }
