@@ -58,7 +58,7 @@ export default function Menu() {
         {/* Divider or Empty Space */}
 
         <span className="inline-block w-fit  sm:w-auto">
-          <ul className="flex flex-wrap justify-center xl:space-x-5 md:space-x-2 :space-x-2">
+          <ul className="flex flex-wrap justify-center xl:space-x-5 md:space-x-2 space-x-2">
             {categories.map((item, index) => (
               <Li
                 key={index}

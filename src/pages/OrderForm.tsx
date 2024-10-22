@@ -1,3 +1,4 @@
+import { Button } from "@material-tailwind/react";
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
@@ -43,7 +44,7 @@ export default function OrderForm() {
   };
 
   return (
-    <div className="mx-auto w-full md:p-6 p-0 py-20 min-h-screen font-['lato']">
+    <div className="mx-auto w-full md:p-6 p-0 py-32  min-h-screen font-['lato']">
       <form onSubmit={handleSubmit} className="space-y-4 mx-auto w-[90%] max-w-[800px]">
         {[
           { label: "Full name", name: "fullName", type: "text", placeholder: "Full Name" },
@@ -69,7 +70,7 @@ export default function OrderForm() {
             />
           </div>
         ))}
-        <button type="submit" className="w-full py-2 px-4 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+        <button type="submit"  className="w-full px-6 py-3 rounded-lg  bg-accent text-background  transition-all ">
           Place Order
         </button>
       </form>

@@ -38,10 +38,12 @@ const TopBar: React.FC = () => {
 
   const context = useContext(wishContext);
   if (!context) return null;
-  
+
   const { wish } = context;
 
-  const { data } = useFetch(`https://dummyjson.com/products/search?q=${searchWords}`);
+  const { data } = useFetch(
+    `https://dummyjson.com/products/search?q=${searchWords}`
+  );
 
   useEffect(() => {
     if (data?.products) {
@@ -50,17 +52,24 @@ const TopBar: React.FC = () => {
   }, [data, searchWords]);
 
   return (
-    <section className="w-full relative h-[90px]">
+    <section className="w-full  relative h-[90px]">
       <div
-        className={`fixed top-0 left-0 w-full z-50 transition-all bg-gradient-to-tr from-primary to-accent flex justify-between items-center px-3 py-5 md:p-5 duration-300 shadow-lg ${showTopBar ? "translate-y-0" : "-translate-y-full"}`}
+        className={`fixed top-0 left-0 w-full z-50 transition-all bg-gradient-to-tr from-primary to-accent flex
+           justify-between items-center px-5 py-5 md:p-5 duration-300 shadow-lg ${
+          showTopBar ? "translate-y-0" : "-translate-y-full"
+        }`}
       >
         {/* Logo */}
-        <header className="md:text-3xl text-lg font-bold text-white">
+        <header className="md:text-3xl text-lg font-bold text-background whitespace-nowrap">
           <h1>E-Com</h1>
         </header>
 
         {/* Search Box */}
-        <div className={`relative transition-all ${searchWords === '' ? 'w-[60%] md:w-[450px]' : 'w-[75%] md:w-[450px]'}`}>
+        <div
+          className={`relative transition-all ${
+            searchWords === "" ? "w-[60%] md:w-[450px]" : "w-[75%] md:w-[450px]"
+          }`}
+        >
           <input
             value={searchWords}
             onChange={(e) => setSearchWords(e.target.value)}
@@ -81,44 +90,28 @@ const TopBar: React.FC = () => {
         </div>
 
         {/* Cart and Wish Icons */}
-        <div className={`space-x-4 items-center transition-all ${searchWords === '' ? 'flex opacity-100' : 'absolute right-0 opacity-0 md:opacity-100 md:relative md:flex'}`}>
+        <div
+          className={`space-x-4  items-center transition-all ${
+            searchWords === ""
+              ? "flex opacity-100"
+              : "absolute right-0 opacity-0 md:opacity-100 md:relative md:flex"
+          }`}
+        >
           {/* Wish Icon */}
-          <span className="relative group">
-            <Link to="/wish">
-              <i
-                className="fa-solid fa-heart cursor-pointer text-lg md:text-2xl text-white transition-all rounded relative group-hover:text-red-500"
-                aria-label="Wish List"
-              >
-                {wish.length > 0 && (
-                  <span className={`absolute top-0 right-0 transform translate-x-2/3 -translate-y-2/3 bg-red-500 text-white rounded-full flex items-center justify-center ${wish.length < 10 ? "md:text-xs text-[10px] w-5 h-5 md:w-6 md:h-6" : "md:text-[10px] text-[8px] w-6 h-6 md:w-7 md:h-7"}`}>
-                    {wish.length}
-                  </span>
-                )}
-              </i>
-            </Link>
-            <span className="absolute top-full left-1/2 transform -translate-x-1/2 translate-y-1 text-xs md:text-sm bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-all duration-200">
-              Wish
-            </span>
-          </span>
+          <IconWithBadge
+            link="/wish"
+            iconClass="fa-solid fa-heart"
+            badgeCount={wish.length}
+            hoverText="Wish"
+          />
 
           {/* Cart Icon */}
-          <span className="relative group">
-            <Link to="/cartDetail">
-              <i
-                className="fa-solid fa-cart-shopping cursor-pointer text-lg md:text-2xl text-white transition-all rounded relative"
-                aria-label="Cart"
-              >
-                {Cartlength > 0 && (
-                  <span className={`absolute top-0 right-0 transform translate-x-2/3 -translate-y-2/3 bg-red-500 text-white rounded-full flex items-center justify-center ${Cartlength < 10 ? "md:text-xs text-[10px] w-5 h-5 md:w-6 md:h-6" : "md:text-[10px] text-[8px] w-6 h-6 md:w-7 md:h-7"}`}>
-                    {Cartlength}
-                  </span>
-                )}
-              </i>
-            </Link>
-            <span className="absolute top-full left-1/2 transform -translate-x-1/2 translate-y-1 text-xs md:text-sm bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-all duration-200">
-              Cart
-            </span>
-          </span>
+          <IconWithBadge
+            link="/cartDetail"
+            iconClass="fa-solid fa-cart-shopping"
+            badgeCount={Cartlength}
+            hoverText="Cart"
+          />
         </div>
       </div>
     </section>
@@ -126,3 +119,46 @@ const TopBar: React.FC = () => {
 };
 
 export default TopBar;
+
+interface IconWithBadgeProps {
+  link: string;
+  iconClass: string;
+  badgeCount: number;
+  hoverText: string;
+}
+const IconWithBadge: React.FC<IconWithBadgeProps> = ({
+  link,
+  iconClass,
+  badgeCount,
+  hoverText,
+}) => {
+  return (
+    <span className="relative group flex items-center">
+      <Link to={link} className="relative flex items-center">
+        {/* Icon */}
+        <i
+          className={`${iconClass} cursor-pointer text-lg md:text-2xl text-white transition-all duration-300 ease-in-out 
+          ${hoverText === 'Wish' ? 'group-hover:text-red-500' : 'group-hover:text-background'} `}
+          aria-label={hoverText}
+        >
+          {badgeCount > 0 && (
+            <span
+              className={`absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-600 text-white rounded-full flex items-center justify-center font-bold ${
+                badgeCount < 10
+                  ? "text-xs w-5 h-5 md:w-6 md:h-6"
+                  : "text-xs w-6 h-6 md:w-7 md:h-7"
+              }`}
+            >
+              {badgeCount}
+            </span>
+          )}
+        </i>
+      </Link>
+
+      {/* Hover Text */}
+      <span className="absolute top-full left-1/2 transform -translate-x-1/2 translate-y-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-xs md:text-sm bg-black text-white px-3 py-1 rounded shadow-lg whitespace-nowrap z-10">
+        {hoverText}
+      </span>
+    </span>
+  );
+};
