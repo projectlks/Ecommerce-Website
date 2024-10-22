@@ -4,8 +4,8 @@ import Menu from "../components/Menu.jsx";
 import Promotion from "./DealsOfTheDay.tsx";
 
 import TopBar from "../components/TopBar.tsx";
-import Products from "./Products.tsx";
 import Footer from "./Footer.tsx";
+import Products from "./Products.tsx";
 import ShowProduct from "./ShowProduct.jsx";
 
 function App() {
@@ -25,7 +25,6 @@ function App() {
 
       <ShowProduct />
 
-      {/* <OrderForm/> */}
       <Footer />
     </section>
   );

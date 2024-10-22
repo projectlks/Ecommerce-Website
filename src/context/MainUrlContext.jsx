@@ -3,9 +3,9 @@ import { createContext, useState } from "react";
 const MainUrlContext = createContext();
 
 export default function MainUrlContextProvider({ children }) {
-   const [type, setType] = useState("beauty");
+   const [type, setType] = useState("mens-watches");
   const [url, setUrl] = useState(
-    `https://dummyjson.com/products/category/beauty?limit=0`
+    `https://dummyjson.com/products/category/mens-watches?limit=0`
   );
  
   const changeLink = (data) => {

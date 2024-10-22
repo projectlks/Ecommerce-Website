@@ -7,6 +7,7 @@ import OrderForm from "../pages/OrderForm.tsx";
 import OrderDetail from "../pages/OrderDetail.tsx";
 import Order from "../pages/Order.tsx";
 import AllProducts from "../pages/AllProducts";
+import Wish from "../pages/Wish";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -37,6 +38,9 @@ const router = createBrowserRouter([
   } , {
     path: '/allProducts',
     element: <AllProducts/>
+  }, {
+    path: '/wish',
+    element: <Wish/>
   }
 ]);
 

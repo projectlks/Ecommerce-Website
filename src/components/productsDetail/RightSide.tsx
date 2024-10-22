@@ -96,41 +96,41 @@ export default function RightSide({ product, amount, id }: RightSideProps) {
       </div>
 
       {/* Add to Cart Section with Quantity Controls */}
-      <div className="flex items-center mt-10 space-x-10">
-        {/* Show "Add to Cart" if the product is not in the cart, else show "Already in Cart" */}
+      <div className="flex items-center mt-10 space-x-5 md:space-x-10">
+  {/* Show "Add to Cart" if the product is not in the cart, else show "Already in Cart" */}
 
-        {!isInCart ? (
-          <Button
-          className="bg-accent text-background transition-all"
-            onClick={() => {
-              addToCart(product);
-              setIsIncart(true);
-              
-            }}
-          >
-            Add to Cart
-          </Button>
-        ) : (
-          <Button disabled>Already in Cart</Button>
-        )}
+  {!isInCart ? (
+    <Button
+      className="bg-accent text-background transition-all text-xs md:text-lg"
+      onClick={() => {
+        addToCart(product);
+        setIsIncart(true);
+      }}
+    >
+      Add to Cart
+    </Button>
+  ) : (
+    <Button disabled className="text-xs md:text-lg">Already in Cart</Button>
+  )}
 
-        {/* Quantity selector with +/- buttons */}
-        <span className="flex items-center">
-          <IconButton variant="text" onClick={() => updateCart(product.id, -1)}>
-            <i className="fa-solid fa-minus text-xl"></i>
-          </IconButton>
+  {/* Quantity selector with +/- buttons */}
+  <span className="flex items-center">
+    <IconButton variant="text" onClick={() => updateCart(product.id, -1)}>
+      <i className="fa-solid fa-minus text-sm md:text-xl"></i>
+    </IconButton>
 
-          {/* Display current quantity in cart */}
-          <p className="inline-block mx-4 text-xl bg-gray-500 w-16 rounded text-center py-1">
-            {amount}
-          </p>
+    {/* Display current quantity in cart */}
+    <p className="inline-block mx-4 text-sm md:text-xl bg-gray-500 w-12 md:w-16 rounded text-center py-1">
+      {amount}
+    </p>
 
-          {/* Button to increase the quantity */}
-          <IconButton variant="text" onClick={() => updateCart(product.id, 1)}>
-            <i className="fa-solid fa-plus text-xl"></i>
-          </IconButton>
-        </span>
-      </div>
+    {/* Button to increase the quantity */}
+    <IconButton variant="text" onClick={() => updateCart(product.id, 1)}>
+      <i className="fa-solid fa-plus text-sm md:text-xl"></i>
+    </IconButton>
+  </span>
+</div>
+
     </div>
   );
 }

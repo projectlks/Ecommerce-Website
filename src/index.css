@@ -93,3 +93,21 @@
         --slide-width: 300px;
     }
 }
+
+
+
+
+/* Add this in your global CSS if using custom scrollbars */
+.scrollbar-custom::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  

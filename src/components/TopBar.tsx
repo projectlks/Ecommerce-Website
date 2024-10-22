@@ -19,9 +19,9 @@ const TopBar: React.FC = () => {
 
   const controlTopBar = () => {
     if (window.scrollY > lastScrollY) {
-      setShowTopBar(false); // Hide TopBar on scroll down
+      setShowTopBar(false);
     } else {
-      setShowTopBar(true); // Show TopBar on scroll up
+      setShowTopBar(true);
     }
     setLastScrollY(window.scrollY);
   };
@@ -37,30 +37,22 @@ const TopBar: React.FC = () => {
   const Cartlength = cart.length;
 
   const context = useContext(wishContext);
-  if (!context) {
-    return null; // Ensure the component doesn't crash if context is not available
-  }
+  if (!context) return null;
+  
   const { wish } = context;
 
-  const { data } = useFetch(
-    `https://dummyjson.com/products/search?q=${searchWords}`
-  );
+  const { data } = useFetch(`https://dummyjson.com/products/search?q=${searchWords}`);
 
   useEffect(() => {
-    if (!data || !data.products) return;
-    setProducts(data.products);
-
-    if (searchWords === "") {
-      setProducts([]);
+    if (data?.products) {
+      setProducts(searchWords ? data.products : []);
     }
-  }, [data]);
+  }, [data, searchWords]);
 
   return (
     <section className="w-full relative h-[90px]">
       <div
-        className={`fixed top-0 left-0 w-full z-50 transition-transform bg-gradient-to-tr from-primary to-accent flex justify-between items-center px-3 py-5 md:p-5 duration-300 shadow-lg ${
-          showTopBar ? "translate-y-0" : "-translate-y-full"
-        }`}
+        className={`fixed top-0 left-0 w-full z-50 transition-all bg-gradient-to-tr from-primary to-accent flex justify-between items-center px-3 py-5 md:p-5 duration-300 shadow-lg ${showTopBar ? "translate-y-0" : "-translate-y-full"}`}
       >
         {/* Logo */}
         <header className="md:text-3xl text-lg font-bold text-white">
@@ -68,42 +60,42 @@ const TopBar: React.FC = () => {
         </header>
 
         {/* Search Box */}
-        <div className="relative w-[70%] md:w-[450px]">
+        <div className={`relative transition-all ${searchWords === '' ? 'w-[60%] md:w-[450px]' : 'w-[75%] md:w-[450px]'}`}>
           <input
             value={searchWords}
             onChange={(e) => setSearchWords(e.target.value)}
             placeholder="Search..."
-            className="bg-white text-gray-700 py-2 px-4 shadow-inner w-full rounded-md focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+            aria-label="Search products"
+            className="bg-white text-gray-700 py-2 px-4 shadow-inner w-full rounded-md focus:outline-none focus:ring-2 focus:ring-accent"
           />
           {/* Results Box */}
-          <div className="absolute top-full left-0 w-full mt-2 bg-white shadow-lg rounded-lg z-10">
-            <ResultsBox products={products} />
-          </div>
+          {searchWords && (
+            <div className="absolute top-full left-0 w-full mt-2 bg-white shadow-lg rounded-lg z-10">
+              {products.length > 0 ? (
+                <ResultsBox products={products} />
+              ) : (
+                <div className="p-2 text-center">There are no results</div>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Cart and Wish Icons */}
-        <div className="flex space-x-4 items-center">
+        <div className={`space-x-4 items-center transition-all ${searchWords === '' ? 'flex opacity-100' : 'absolute right-0 opacity-0 md:opacity-100 md:relative md:flex'}`}>
           {/* Wish Icon */}
           <span className="relative group">
-            <Link to="/cartDetail">
+            <Link to="/wish">
               <i
-                className={`fa-solid fa-heart cursor-pointer text-lg md:text-2xl text-white transition-all rounded relative group-hover:text-red-500`}
+                className="fa-solid fa-heart cursor-pointer text-lg md:text-2xl text-white transition-all rounded relative group-hover:text-red-500"
+                aria-label="Wish List"
               >
                 {wish.length > 0 && (
-                  <span
-                    className={`absolute top-0 right-0 transform translate-x-2/3 -translate-y-2/3 bg-red-500 text-white rounded-full flex items-center justify-center ${
-                      wish.length < 10
-                        ? "md:text-xs text-[10px] w-5 h-5 md:w-6 md:h-6"
-                        : "md:text-[10px] text-[8px] w-6 h-6 md:w-7 md:h-7"
-                    }`}
-                  >
+                  <span className={`absolute top-0 right-0 transform translate-x-2/3 -translate-y-2/3 bg-red-500 text-white rounded-full flex items-center justify-center ${wish.length < 10 ? "md:text-xs text-[10px] w-5 h-5 md:w-6 md:h-6" : "md:text-[10px] text-[8px] w-6 h-6 md:w-7 md:h-7"}`}>
                     {wish.length}
                   </span>
                 )}
               </i>
             </Link>
-
-            {/* Hover text */}
             <span className="absolute top-full left-1/2 transform -translate-x-1/2 translate-y-1 text-xs md:text-sm bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-all duration-200">
               Wish
             </span>
@@ -113,23 +105,16 @@ const TopBar: React.FC = () => {
           <span className="relative group">
             <Link to="/cartDetail">
               <i
-                className={`fa-solid fa-cart-shopping cursor-pointer text-lg md:text-2xl text-white transition-all rounded relative`}
+                className="fa-solid fa-cart-shopping cursor-pointer text-lg md:text-2xl text-white transition-all rounded relative"
+                aria-label="Cart"
               >
                 {Cartlength > 0 && (
-                  <span
-                    className={`absolute top-0 right-0 transform translate-x-2/3 -translate-y-2/3 bg-red-500 text-white rounded-full flex items-center justify-center ${
-                      Cartlength < 10
-                        ? "md:text-xs text-[10px] w-5 h-5 md:w-6 md:h-6"
-                        : "md:text-[10px] text-[8px] w-6 h-6 md:w-7 md:h-7"
-                    }`}
-                  >
+                  <span className={`absolute top-0 right-0 transform translate-x-2/3 -translate-y-2/3 bg-red-500 text-white rounded-full flex items-center justify-center ${Cartlength < 10 ? "md:text-xs text-[10px] w-5 h-5 md:w-6 md:h-6" : "md:text-[10px] text-[8px] w-6 h-6 md:w-7 md:h-7"}`}>
                     {Cartlength}
                   </span>
                 )}
               </i>
             </Link>
-
-            {/* Hover text */}
             <span className="absolute top-full left-1/2 transform -translate-x-1/2 translate-y-1 text-xs md:text-sm bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-all duration-200">
               Cart
             </span>
