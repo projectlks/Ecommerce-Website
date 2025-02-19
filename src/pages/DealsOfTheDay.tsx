@@ -136,6 +136,7 @@ const DealsOfTheDay: React.FC = () => {
                         src={product.thumbnail}
                         alt={product.title}
                         className="h-[70%] mx-auto"
+                        loading="lazy"
                       />
                     </div>
 

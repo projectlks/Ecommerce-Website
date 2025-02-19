@@ -51,6 +51,7 @@ const CartDetail = () => {
                           src={item.thumbnail}
                           alt={item.title}
                           className="h-full w-auto mx-auto"
+                          loading="lazy"
                         />
                         <i
                           className="fa-regular fa-circle-xmark absolute text-red-500 cursor-pointer -top-3 -right-3"

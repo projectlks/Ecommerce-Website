@@ -45,6 +45,7 @@ export default function Wish() {
                           src={data.thumbnail}
                           alt={data.title}
                           className="h-[80%] aspect-square"
+                          loading="lazy"
                         />
                       </span>
 

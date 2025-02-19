@@ -50,6 +50,7 @@ export default function ProductShowcase() {
             src={left}
             alt=""
             className="w-[80%] transition-all duration-200 xl:-left-52 left-3 top-28 xl:top-1/2 transform -rotate-[30deg]"
+            loading="lazy"
           />
         </div>
       </section>
@@ -61,7 +62,7 @@ export default function ProductShowcase() {
             WHERE STYLE MEETS PRECISION
           </h1>
           <span className="w-full h-[200px] flex justify-center items-center bg-primary">
-            <img src={left} alt="clock" className="h-full w-auto" />
+            <img src={left} alt="clock" className="h-full w-auto" loading="lazy" />
           </span>
 
           <p className="text-[24px] my-10 text-center md:text-left">
@@ -70,7 +71,7 @@ export default function ProductShowcase() {
           </p>
 
           <span className="w-full h-[200px] flex justify-center items-center bg-primary">
-            <img src={right} alt="clock" className="h-full w-auto" />
+            <img src={right} alt="clock" className="h-full w-auto" loading="lazy"/>
           </span>
 
           <h1 className="text-center">Rolex Cellini Moonphase</h1>
@@ -93,6 +94,7 @@ export default function ProductShowcase() {
               src={clock}
               alt="Rolex Cellini Moonphase"
               className="w-auto aspect-square absolute h-full object-cover scale-125"
+              loading="lazy"
             />
           </span>
         </div>

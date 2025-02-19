@@ -8,40 +8,44 @@ import OrderDetail from "../pages/OrderDetail.tsx";
 import Order from "../pages/Order.tsx";
 import AllProducts from "../pages/AllProducts";
 import Wish from "../pages/Wish";
+
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />
+    element: <App />,
   },
   {
     path: "/cartDetail",
-    element: <CartDetail />
+    element: <CartDetail />,
   },
   {
     path: "/login",
-    element: <Login />
+    element: <Login />,
   },
   {
     path: "/productDetail/:id",
-    element: <ProductDetail />
+    element: <ProductDetail />,
   },
   {
-    path: '/orderForm',
-    element: <OrderForm/>
-  }, {
-    path: '/orderDetail',
-    element: <OrderDetail/>
-  }
-  , {
-    path: '/order',
-    element: <Order/>
-  } , {
-    path: '/allProducts',
-    element: <AllProducts/>
-  }, {
-    path: '/wish',
-    element: <Wish/>
-  }
+    path: "/orderForm",
+    element: <OrderForm />,
+  },
+  {
+    path: "/orderDetail",
+    element: <OrderDetail />,
+  },
+  {
+    path: "/order",
+    element: <Order />,
+  },
+  {
+    path: "/allProducts",
+    element: <AllProducts />,
+  },
+  {
+    path: "/wish",
+    element: <Wish />,
+  },
 ]);
 
-export default router
+export default router;

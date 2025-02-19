@@ -26,6 +26,7 @@ export default function ResultsBox({ products }: Props) {
                   src={product.thumbnail}
                   alt={product.title}
                   className="w-12 h-12 bg-background"
+                  loading="lazy"
                 />
 
                 <span>

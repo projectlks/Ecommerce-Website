@@ -55,6 +55,7 @@ export default function OrderDetail() {
                   src={item.thumbnail}
                   alt={item.title}
                   className="product-img w-[80%] rounded-md"
+                  loading="lazy"
                 />
               </div>
               <div className="order-detail-text w-2/3 flex flex-col justify-between">

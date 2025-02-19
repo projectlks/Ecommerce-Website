@@ -24,6 +24,7 @@ export default function Card({ product }: Props) {
             src={product.thumbnail} // Thumbnail of the product
             alt={product.title} // Product title for the alt attribute
             className="float-bottom h-[80%] mx-auto w-auto"
+            loading="lazy"
           />
         </div>
 
